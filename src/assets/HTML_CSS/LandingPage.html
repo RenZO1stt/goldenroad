@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+      }
+      .header {
+        background-color: black;
+        width: 100vw;
+        height: 10vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        padding: 0.3rem 0.95rem;
+        box-sizing: border-box;
+      }
+
+      .a1 {
+        border-right: 1px white solid;
+      }
+
+      .background {
+        width: 35vw;
+        height: 70vh;
+        align-items: center;
+        margin: 0 auto;
+        overflow-y: auto;
+        margin-top: 10vh;
+        border-radius: 1.5rem;
+        box-shadow: 0 0 10px gray;
+        scrollbar-width: none;
+      }
+      .Add {
+        box-sizing: border-box;
+        margin-top: 1.9vh;
+        float: right;
+        margin-right: 0.8vw;
+        border: none;
+        background-color: blue;
+        color: white;
+        border-radius: 16px;
+        width: 5vw;
+        height: 5vh;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        font-size: 1rem;
+      }
+
+      .Add:hover {
+        background-color: darkblue;
+      }
+
+      .container {
+        background-color: whitesmoke;
+        width: 27vw;
+        height: 56vh;
+        margin: 0 auto;
+        margin-top: 5.25rem;
+        align-items: center;
+        border-radius: 1.5rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+
+      .componentbar {
+        height: 5vh;
+        width: auto;
+        background-color: rgb(228, 227, 227);
+        margin: 7.5px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: monospace;
+        font-size: 1rem;
+        box-shadow: 0 0 2px gray;
+      }
+
+      .componentbar:hover {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <a href="" class="a1">PROFILE</a>
+      <a href="" class="a2">HOME</a>
+    </div>
+    <div class="main">
+      <div class="background">
+        <button class="Add">Add+</button>
+        <div class="container">
+          <div class="componentbar">
+            <span>12.2.2025</span>
+            <span>Push</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

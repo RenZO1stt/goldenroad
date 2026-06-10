@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .componentbaropen {
+        height: 5vh;
+        width: auto;
+        background-color: rgb(228, 227, 227);
+        margin: 7.5px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-family: monospace;
+        font-size: 1rem;
+        box-shadow: 0 0 2px gray;
+      }
+
+      .addinput{
+        border: none;
+        width: 6vw;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="componentbaropen">
+        <input type="text" id="exercise" class="addinput" placeholder="Exercise..."/>
+        <input type="text" id="sets" class="addinput" placeholder="Sets..." />
+        <input type="text" id="reps" class="addinput" placeholder="Reps..." />
+        <input type="text" id="kg" class="addinput" placeholder="Kg..." />
+    </div>
+  </body>
+</html>
