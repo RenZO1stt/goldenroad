@@ -87,6 +87,7 @@ a {
     <router-link to="/profile" class="a1">PROFILE</router-link>
     <router-link to="/" class="a2">HOME</router-link>
     <button
+      disabled
       class="Remove"
       style="
         width: 7%;

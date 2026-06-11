@@ -299,7 +299,7 @@ export default {
           break;
         }
       }
-      // Reset input fields after adding
+      // Reseta input fieldove
       this.vjezba = "";
       this.setovi = "";
       this.ponavljanja = "";

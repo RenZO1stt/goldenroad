@@ -30,7 +30,7 @@ const personSchema = new mongoose.Schema({
   indexi: Number,
   name: String,
   table: Array,
-  datum: Date,
+  datum: String,
 });
 const Person = mongoose.model("User", personSchema);
 

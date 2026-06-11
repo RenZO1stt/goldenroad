@@ -20,7 +20,7 @@ body {
 }
 
 .cantselect {
-  user-select: none; /* Standard */
+  user-select: none;
   overflow-y: auto;
   scrollbar-width: none;
 }

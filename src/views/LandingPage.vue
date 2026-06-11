@@ -114,6 +114,7 @@ a {
     <router-link to="/profile" class="a1">PROFILE</router-link>
     <router-link to="/" class="a2">HOME</router-link>
     <button
+      disabled
       class="Remove"
       style="
         width: 7%;
@@ -173,7 +174,7 @@ export default {
         indexi: this.brojtreninga.length,
         name: null,
         table: [],
-        datum: new Date().toISOString().split("T")[0],
+        datum: new Date().toString().slice(4, 15),
       };
 
       const res = await fetch("http://localhost:3000/people", {
@@ -183,7 +184,7 @@ export default {
       });
 
       const saved = await res.json();
-      this.brojtreninga.push(saved); // push what MongoDB returns so you get the _id too
+      this.brojtreninga.push(saved);
     },
 
     async ukloniTrening() {
@@ -208,7 +209,6 @@ export default {
       const auth = getAuth(app);
       signOut(auth)
         .then(() => {
-          // Sign-out successful.
           //console.log({ curuser, brojtreninga });
           this.svipodaci.curuser = null;
           this.$router.replace("/login");
