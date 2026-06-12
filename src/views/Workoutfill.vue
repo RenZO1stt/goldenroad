@@ -306,14 +306,25 @@ export default {
       this.kilaza = "";
     },
 
-    remove() {
+    async remove() {
       for (let trening of this.brojtreninga) {
         if (
           Object.keys(trening).includes("table") &&
           trening.indexi == this.svipodaci.indexofclicked
         ) {
           trening.table.pop();
-          console.log(trening.table.length);
+          const res = await fetch(
+            `http://localhost:3000/people/${trening._id}`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                table: trening.table,
+                name: trening.name,
+              }),
+            },
+          );
+          break;
         }
       }
     },
