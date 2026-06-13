@@ -162,7 +162,7 @@ export default {
   },
 
   async mounted() {
-    const res = await fetch("http://localhost:3000/people");
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/people`);
     this.brojtreninga = await res.json();
   },
   components: {
@@ -177,7 +177,7 @@ export default {
         datum: new Date().toString().slice(4, 15),
       };
 
-      const res = await fetch("http://localhost:3000/people", {
+      const res = await fetch(`${process.env.VUE_APP_API_URL}/people`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTrening),
@@ -190,7 +190,7 @@ export default {
     async ukloniTrening() {
       if (this.brojtreninga.length > 0) {
         const last = this.brojtreninga[this.brojtreninga.length - 1];
-        const url = `http://localhost:3000/people/${last._id}`;
+        const url = `${process.env.VUE_APP_API_URL}/people/${last._id}`;
         console.log("URL:", url);
 
         const res = await fetch(url, { method: "DELETE" });
