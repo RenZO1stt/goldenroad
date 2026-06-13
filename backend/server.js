@@ -6,7 +6,7 @@ import "dotenv/config";
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: ["http://localhost:8080", "https://frontend-rmgh.onrender.com"],
     methods: ["GET", "POST", "DELETE", "PUT"],
   }),
 );
