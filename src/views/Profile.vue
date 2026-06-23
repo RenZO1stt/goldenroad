@@ -87,7 +87,6 @@ a {
     <router-link to="/profile" class="a1">PROFILE</router-link>
     <router-link to="/" class="a2">HOME</router-link>
     <button
-      disabled
       class="Remove"
       style="
         width: 7%;
@@ -131,7 +130,7 @@ export default {
         .then(() => {
           // Sign-out successful.
           //console.log({ curuser, brojtreninga });
-          this.$router.replace("/login");
+          this.$router.replace("/register");
         })
         .catch((error) => {
           // An error happened.

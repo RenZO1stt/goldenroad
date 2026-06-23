@@ -3,6 +3,7 @@ import HomeView from "../views/LandingPage.vue";
 import Workoutfill from "../views/Workoutfill.vue";
 import Loginpage from "../views/Loginpage.vue";
 import Profile from "../views/Profile.vue";
+import Register from "../views/Registerpage.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: Profile, // Now eager
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register, // Now eager
   },
 ];
 

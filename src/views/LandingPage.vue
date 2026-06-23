@@ -114,7 +114,6 @@ a {
     <router-link to="/profile" class="a1">PROFILE</router-link>
     <router-link to="/" class="a2">HOME</router-link>
     <button
-      disabled
       class="Remove"
       style="
         width: 7%;
@@ -134,7 +133,7 @@ a {
       <button class="Remove" @click="ukloniTrening()">-</button>
       <div class="container">
         <ComponentBar
-          v-for="(trening, index) in brojtreninga"
+          v-for="(trening, index) in currentTable"
           :key="index"
           @click="fillsheet(index)"
           :vari="trening"
@@ -162,22 +161,34 @@ export default {
   },
 
   async mounted() {
-    const res = await fetch(`${process.env.VUE_APP_API_URL}/people`);
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/vjezbe`);
     this.brojtreninga = await res.json();
   },
   components: {
     ComponentBar,
   },
+  computed: {
+    currentTable() {
+      let temp = [];
+      for (let trening of this.brojtreninga) {
+        if (trening.user == this.svipodaci.curuser) {
+          temp.push(trening);
+        }
+      }
+      return temp;
+    },
+  },
   methods: {
     async dodajTrening() {
       const newTrening = {
+        user: this.svipodaci.curuser,
         indexi: this.brojtreninga.length,
         name: null,
         table: [],
         datum: new Date().toString().slice(4, 15),
       };
 
-      const res = await fetch(`${process.env.VUE_APP_API_URL}/people`, {
+      const res = await fetch(`${process.env.VUE_APP_API_URL}/vjezbe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTrening),
@@ -190,7 +201,7 @@ export default {
     async ukloniTrening() {
       if (this.brojtreninga.length > 0) {
         const last = this.brojtreninga[this.brojtreninga.length - 1];
-        const url = `${process.env.VUE_APP_API_URL}/people/${last._id}`;
+        const url = `${process.env.VUE_APP_API_URL}/vjezbe/${last._id}`;
         console.log("URL:", url);
 
         const res = await fetch(url, { method: "DELETE" });
@@ -211,7 +222,7 @@ export default {
         .then(() => {
           //console.log({ curuser, brojtreninga });
           this.svipodaci.curuser = null;
-          this.$router.replace("/login");
+          this.$router.replace("/register");
         })
         .catch((error) => {
           // An error happened.

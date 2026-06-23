@@ -26,35 +26,53 @@ mongoose
   .catch((err) => console.log("Connection failed:", err));
 
 // Your schemas and routes go here
-const personSchema = new mongoose.Schema({
+const korisnik = new mongoose.Schema({
+  gmail: String,
+  password: String,
+});
+
+const vjezbe = new mongoose.Schema({
+  user: String,
   indexi: Number,
   name: String,
   table: Array,
   datum: String,
 });
-const Person = mongoose.model("User", personSchema);
 
-app.get("/people", async (req, res) => {
-  const docs = await Person.find();
+const vjezbeModel = mongoose.model("Vjezbe", vjezbe);
+const korisnikModel = mongoose.model("Korisnik", korisnik);
+
+app.post("/korisnik", async (req, res) => {
+  const newKorisnik = await korisnikModel.create(req.body);
+  res.json(newKorisnik);
+});
+
+app.get("/korisnik", async (req, res) => {
+  const odabrani = await korisnikModel.find();
+  res.json(odabrani);
+});
+
+app.get("/vjezbe", async (req, res) => {
+  const docs = await vjezbeModel.find();
   res.json(docs);
 });
 
-app.post("/people", async (req, res) => {
-  const newPerson = await Person.create(req.body);
-  res.json(newPerson);
+app.post("/vjezbe", async (req, res) => {
+  const newVjezbe = await vjezbeModel.create(req.body);
+  res.json(newVjezbe);
 });
 
-app.put("/people/:id", async (req, res) => {
-  const updatedPerson = await Person.findByIdAndUpdate(
+app.put("/vjezbe/:id", async (req, res) => {
+  const updatedVjezbe = await vjezbeModel.findByIdAndUpdate(
     req.params.id,
     { name: req.body.name, table: req.body.table },
     { new: true },
   );
-  res.json(updatedPerson);
+  res.json(updatedVjezbe);
 });
 
-app.delete("/people/:id", async (req, res) => {
-  await Person.findByIdAndDelete(req.params.id);
+app.delete("/vjezbe/:id", async (req, res) => {
+  await vjezbeModel.findByIdAndDelete(req.params.id);
   res.json({ ok: true });
 });
 

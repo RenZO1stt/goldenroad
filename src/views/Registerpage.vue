@@ -94,7 +94,7 @@ body {
           flex-direction: column;
         "
       >
-        <h1 style="margin-bottom: 2vh">Login</h1>
+        <h1 style="margin-bottom: 2vh">Register</h1>
         <input
           v-model="gmail"
           type="text"
@@ -122,7 +122,7 @@ body {
             font-size: 1vw;
           "
         />
-        <button class="login" @click="login()">L O G I N</button>
+        <button class="login" @click="register()">R E G I S T E R</button>
         <span
           style="
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
@@ -130,11 +130,11 @@ body {
             font-size: 1vw;
           "
         >
-          Don't have an account?
+          Already have an account?
           <router-link
-            to="/register"
+            to="/login"
             style="color: orange; text-decoration: underline"
-            >Register</router-link
+            >Login</router-link
           ></span
         >
       </div>
@@ -165,27 +165,25 @@ export default {
 
   components: {},
   methods: {
-    async login() {
+    async register() {
       if (this.gmail === "" || this.pass === "") {
         alert("Please fill in both fields.");
+        return;
       } else {
-        const res = await fetch(`${process.env.VUE_APP_API_URL}/korisnik`, {
-          method: "GET",
-        });
-
-        const lista = await res.json();
-        let found = false;
-
-        for (let objekt of lista) {
-          if (objekt.gmail === this.gmail && objekt.password === this.pass) {
-            this.svipodaci.curuser = this.gmail;
-            this.$router.replace("/");
-            found = true;
-            break;
-          }
-        }
-        if (found == false) {
-          alert("Invalid Gmail or Password. Please try again.");
+        if (!this.gmail.includes("@")) {
+          alert("Please enter a valid email address.");
+          return;
+        } else {
+          this.svipodaci.curuser = this.gmail;
+          const res = await fetch(`${process.env.VUE_APP_API_URL}/korisnik`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              gmail: this.gmail,
+              password: this.pass,
+            }),
+          });
+          this.$router.replace("/");
         }
       }
     },

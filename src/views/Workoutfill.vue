@@ -246,7 +246,7 @@ export default {
     };
   },
   async mounted() {
-    const res = await fetch(`${process.env.VUE_APP_API_URL}/people`);
+    const res = await fetch(`${process.env.VUE_APP_API_URL}/vjezbe`);
     this.brojtreninga = await res.json();
   },
 
@@ -285,7 +285,7 @@ export default {
           trening.name = this.ime;
 
           const res = await fetch(
-            `${process.env.VUE_APP_API_URL}/people/${trening._id}`,
+            `${process.env.VUE_APP_API_URL}/vjezbe/${trening._id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
@@ -314,7 +314,7 @@ export default {
         ) {
           trening.table.pop();
           const res = await fetch(
-            `${process.env.VUE_APP_API_URL}/people/${trening._id}`,
+            `${process.env.VUE_APP_API_URL}/vjezbe/${trening._id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
