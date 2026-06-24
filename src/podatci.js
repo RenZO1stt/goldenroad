@@ -1,8 +1,14 @@
 import { reactive, ref } from "vue";
 
 const brojtreninga = reactive([]);
-const indexofclicked = ref(null);
-const curuser = ref(null);
+const currentWorkoutId = ref(
+  typeof localStorage !== "undefined"
+    ? localStorage.getItem("currentWorkoutId")
+    : null,
+);
+const curuser = ref(
+  typeof localStorage !== "undefined" ? localStorage.getItem("curuser") : null,
+);
 //{index: indexofclicked , brojpodtreninga: , name: , tables: [{exercise: , sets: ,...},{...}]}
 //const storepodtreninga = []; //prikazuje onaj koji zadovoljava uvijet
 
@@ -29,6 +35,6 @@ if (brojtreninga.some((obj) => obj.index == indexofclicked)) {
 
 export default {
   brojtreninga,
-  indexofclicked,
+  currentWorkoutId,
   curuser,
 };

@@ -248,6 +248,11 @@ export default {
   async mounted() {
     const res = await fetch(`${process.env.VUE_APP_API_URL}/vjezbe`);
     this.brojtreninga = await res.json();
+
+    if (!this.svipodaci.curuser) {
+      alert("You are not logged in. Redirecting to the login page.");
+      this.$router.replace("/login");
+    }
   },
 
   components: {
@@ -257,11 +262,14 @@ export default {
   computed: {
     currentTable() {
       const current = this.brojtreninga.find(
-        (trening) =>
-          trening.indexi == this.svipodaci.indexofclicked &&
-          trening.user == this.svipodaci.curuser,
+        (trening) => trening._id == this.svipodaci.currentWorkoutId,
       );
       return current ? current.table : [];
+    },
+    currentWorkout() {
+      return this.brojtreninga?.find(
+        (trening) => trening._id == this.svipodaci.currentWorkoutId,
+      );
     },
     /*  loadime() {
       const current = this.brojtreninga.find(
@@ -272,35 +280,29 @@ export default {
   },
   methods: {
     async dodajpodtrening() {
-      for (let trening of this.brojtreninga) {
-        if (trening.indexi == this.svipodaci.indexofclicked) {
-          console.log(svipodaci.indexofclicked);
-          console.log(this.brojtreninga);
+      if (!this.currentWorkout) return;
 
-          trening.table.push({
-            exercise: this.vjezba,
-            sets: this.setovi,
-            reps: this.ponavljanja,
-            kg: this.kilaza,
-          });
+      this.currentWorkout.table.push({
+        exercise: this.vjezba,
+        sets: this.setovi,
+        reps: this.ponavljanja,
+        kg: this.kilaza,
+      });
 
-          trening.name = this.ime;
+      this.currentWorkout.name = this.ime;
 
-          const res = await fetch(
-            `${process.env.VUE_APP_API_URL}/vjezbe/${trening._id}`,
-            {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                table: trening.table,
-                name: trening.name,
-              }),
-            },
-          );
+      const res = await fetch(
+        `${process.env.VUE_APP_API_URL}/vjezbe/${this.currentWorkout._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            table: this.currentWorkout.table,
+            name: this.currentWorkout.name,
+          }),
+        },
+      );
 
-          break;
-        }
-      }
       // Reseta input fieldove
       this.vjezba = "";
       this.setovi = "";
@@ -309,26 +311,20 @@ export default {
     },
 
     async remove() {
-      for (let trening of this.brojtreninga) {
-        if (
-          Object.keys(trening).includes("table") &&
-          trening.indexi == this.svipodaci.indexofclicked
-        ) {
-          trening.table.pop();
-          const res = await fetch(
-            `${process.env.VUE_APP_API_URL}/vjezbe/${trening._id}`,
-            {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                table: trening.table,
-                name: trening.name,
-              }),
-            },
-          );
-          break;
-        }
-      }
+      if (!this.currentWorkout || !this.currentWorkout.table.length) return;
+
+      this.currentWorkout.table.pop();
+      const res = await fetch(
+        `${process.env.VUE_APP_API_URL}/vjezbe/${this.currentWorkout._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            table: this.currentWorkout.table,
+            name: this.currentWorkout.name,
+          }),
+        },
+      );
     },
   },
 };

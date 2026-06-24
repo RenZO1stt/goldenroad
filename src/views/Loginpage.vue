@@ -179,6 +179,8 @@ export default {
         for (let objekt of lista) {
           if (objekt.gmail === this.gmail && objekt.password === this.pass) {
             this.svipodaci.curuser = this.gmail;
+            localStorage.setItem("curuser", this.gmail);
+            console.log("Ovo je trenutni korisnik:", this.svipodaci.curuser);
             this.$router.replace("/");
             found = true;
             break;

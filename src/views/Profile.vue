@@ -110,8 +110,6 @@ a {
 </template>
 
 <script>
-import { getAuth, signOut } from "firebase/auth";
-import { app } from "../firebase-config.js";
 import svipodaci from "../podatci.js";
 export default {
   name: "ProfilePage",
@@ -125,16 +123,10 @@ export default {
   },*/
   methods: {
     logout() {
-      const auth = getAuth(app);
-      signOut(auth)
-        .then(() => {
-          // Sign-out successful.
-          //console.log({ curuser, brojtreninga });
-          this.$router.replace("/register");
-        })
-        .catch((error) => {
-          // An error happened.
-        });
+      this.svipodaci.curuser = null;
+      localStorage.removeItem("curuser");
+      localStorage.removeItem("currentWorkoutId");
+      this.$router.replace("/login");
     },
   },
 };

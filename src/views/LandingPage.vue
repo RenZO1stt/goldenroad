@@ -133,9 +133,9 @@ a {
       <button class="Remove" @click="ukloniTrening()">-</button>
       <div class="container">
         <ComponentBar
-          v-for="(trening, index) in currentTable"
-          :key="index"
-          @click="fillsheet(index)"
+          v-for="trening in currentTable"
+          :key="trening._id"
+          @click="fillsheet(trening)"
           :vari="trening"
         />
       </div>
@@ -148,8 +148,6 @@ a {
 
 import ComponentBar from "@/components/componentbar.vue";
 import svipodaci from "@/podatci.js";
-import { getAuth, signOut } from "firebase/auth";
-import { app } from "@/firebase-config.js";
 
 export default {
   name: "LandingPage",
@@ -163,6 +161,11 @@ export default {
   async mounted() {
     const res = await fetch(`${process.env.VUE_APP_API_URL}/vjezbe`);
     this.brojtreninga = await res.json();
+
+    if (!this.svipodaci.curuser) {
+      alert("You are not logged in. Redirecting to the login page.");
+      this.$router.replace("/login");
+    }
   },
   components: {
     ComponentBar,
@@ -199,34 +202,32 @@ export default {
     },
 
     async ukloniTrening() {
-      if (this.brojtreninga.length > 0) {
-        const last = this.brojtreninga[this.brojtreninga.length - 1];
+      if (this.currentTable.length > 0) {
+        const last = this.currentTable[this.currentTable.length - 1];
         const url = `${process.env.VUE_APP_API_URL}/vjezbe/${last._id}`;
         console.log("URL:", url);
 
         const res = await fetch(url, { method: "DELETE" });
         console.log("Response status:", res.status);
 
-        this.brojtreninga.pop();
+        const index = this.brojtreninga.findIndex(
+          (item) => item._id === last._id,
+        );
+        if (index > -1) {
+          this.brojtreninga.splice(index, 1);
+        }
       }
     },
-    fillsheet(index) {
-      svipodaci.indexofclicked = index; // Update global
+    fillsheet(trening) {
+      svipodaci.currentWorkoutId = trening._id; // Store the unique workout ID
+      localStorage.setItem("currentWorkoutId", trening._id);
       this.$router.push("/fill");
-      //console.log(svipodaci.indexofclicked);
     },
     logout() {
-      console.log(this.svipodaci.curuser);
-      const auth = getAuth(app);
-      signOut(auth)
-        .then(() => {
-          //console.log({ curuser, brojtreninga });
-          this.svipodaci.curuser = null;
-          this.$router.replace("/register");
-        })
-        .catch((error) => {
-          // An error happened.
-        });
+      this.svipodaci.curuser = null;
+      localStorage.removeItem("curuser");
+      localStorage.removeItem("currentWorkoutId");
+      this.$router.replace("/login");
     },
   },
 };

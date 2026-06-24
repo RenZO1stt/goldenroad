@@ -175,6 +175,7 @@ export default {
           return;
         } else {
           this.svipodaci.curuser = this.gmail;
+          localStorage.setItem("curuser", this.gmail);
           const res = await fetch(`${process.env.VUE_APP_API_URL}/korisnik`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
