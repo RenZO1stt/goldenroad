@@ -257,13 +257,15 @@ export default {
   computed: {
     currentTable() {
       const current = this.brojtreninga.find(
-        (trening) => trening.indexi === this.svipodaci.indexofclicked,
+        (trening) =>
+          trening.indexi == this.svipodaci.indexofclicked &&
+          trening.user == this.svipodaci.curuser,
       );
       return current ? current.table : [];
     },
     /*  loadime() {
       const current = this.brojtreninga.find(
-        (trening) => trening.indexi === this.svipodaci.indexofclicked,
+        (trening) => trening.indexi == this.svipodaci.indexofclicked,
       );
       return current ? current.ime : "";
     }, */

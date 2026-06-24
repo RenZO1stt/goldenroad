@@ -213,7 +213,7 @@ export default {
     fillsheet(index) {
       svipodaci.indexofclicked = index; // Update global
       this.$router.push("/fill");
-      console.log(svipodaci.indexofclicked);
+      //console.log(svipodaci.indexofclicked);
     },
     logout() {
       console.log(this.svipodaci.curuser);
