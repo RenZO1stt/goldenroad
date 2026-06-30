@@ -5,9 +5,10 @@ body {
 
 .componentbaropen1 {
   height: 5vh;
-  width: auto;
-  background-color: rgb(228, 227, 227);
-  margin: 7.5px 0;
+  width: 98%;
+  border-radius: 5px;
+  background-color: #ebb9ff;
+  margin: 7.5px auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -15,7 +16,9 @@ body {
   font-size: 1rem;
   box-shadow: 0 0 2px gray;
 }
-
+.componentbaropen1:hover {
+  background-color: #f5f2cb;
+}
 .addspan1 {
   border: none;
   width: 6vw;
@@ -23,7 +26,8 @@ body {
   font-size: 0.85rem;
   background-color: white;
   user-select: none;
-  border-radius: 5px;
+  border-radius: 3px;
+  text-align: center;
 }
 </style>
 

@@ -1,227 +1,255 @@
 <style>
 body {
   margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f8fafc;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+/* HEADER */
 .header {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
+  width: 100%;
+  height: 70px;
+
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 40px;
+}
+
+.header a {
+  color: #374151;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+
+  margin-right: 25px;
+}
+
+.header a:hover {
+  color: #2563eb;
+}
+
+/* MAIN WRAPPER */
+.main {
+  min-height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: sticky;
+
+  padding: 40px 20px;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  padding: 0.017vh 0.79vw;
-  box-sizing: border-box;
-  user-select: none;
-}
-
-.a1 {
-  border-right: 1px white solid;
-  user-select: none;
-}
-
+/* CARD */
 .backgroundopen {
-  width: 35vw;
-  height: 73vh;
-  align-items: center;
-  margin: 0 auto;
-  overflow-y: auto;
-  margin-top: 9vh;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 10px gray;
-  scrollbar-width: none;
-}
-.Addopen {
-  display: inline-block;
-  box-sizing: border-box;
-  border: none;
-  background-color: blue;
-  color: white;
-  border-radius: 16px;
-  width: 5vw;
-  height: 5vh;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1rem;
-  margin-left: 0.3vw;
+  width: 850px;
+  max-width: 100%;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+
+  padding: 25px;
 }
 
-.Addopen1 {
-  display: inline-block;
-  box-sizing: border-box;
-  border: none;
-  background-color: red;
-  color: white;
-  border-radius: 16px;
-  width: 2.5vw;
-  height: 5vh;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1rem;
-  margin-left: 0.4vw;
-  font-weight: bold;
+/* TOP BAR */
+.containeropen2 {
+  display: flex;
   align-items: center;
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+/* TITLE */
+.title {
+  flex: 1;
+
+  height: 45px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 15px;
+
+  background: #fff;
+}
+
+.title:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* BUTTONS */
+.Addopen,
+.Addopen1 {
+  border: none;
+  border-radius: 10px;
+
+  height: 45px;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.Addopen {
+  background: #2563eb;
+  color: white;
 }
 
 .Addopen:hover {
-  background-color: darkblue;
+  background: #1d4ed8;
+}
+
+.Addopen1 {
+  background: #ef4444;
+  color: white;
 }
 
 .Addopen1:hover {
-  background-color: darkred;
-}
-.containeropen {
-  background-color: whitesmoke;
-  width: 31vw;
-  height: 51.5vh;
-  margin: 0 auto;
-  margin-top: 0.5rem;
-  align-items: center;
-  border-radius: 1.5rem;
-  box-sizing: border-box;
-  overflow-y: auto;
-  scrollbar-width: none;
+  background: #dc2626;
 }
 
-.containeropen2 {
-  display: flex;
-  background-color: whitesmoke;
-  width: 31.25vw;
-  height: 6vh;
-  margin: 0 auto;
-  margin-top: 1.25rem;
-  margin-left: 2rem;
-  align-items: center;
-  border-radius: 1rem;
-  box-sizing: border-box;
-  overflow-y: hidden;
-  scrollbar-width: none;
+/* INPUT ROW */
+.componentbaropen {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+
+  padding: 15px;
+
+  background: #f9fafb;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  margin-bottom: 15px;
 }
 
+.addinput1 {
+  width: 100%;
+  height: 40px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  padding: 0 10px;
+
+  font-size: 14px;
+}
+
+.addinput1:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* LABELS */
 .text {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: 0 2vw;
-  font-family: monospace;
-  font-size: 1.1rem;
-  margin-top: 1.3vh;
+
+  padding: 0 10px;
+  margin-bottom: 10px;
+
+  font-size: 13px;
+  color: #6b7280;
 }
 
+/* TABLE */
+.containeropen {
+  max-height: 400px;
+  overflow-y: auto;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  background: #fff;
+}
+
+/* ROWS */
 .componentbaropen {
-  height: 5vh;
-  width: auto;
-  background-color: rgb(228, 227, 227);
-  margin: 7.5px 0;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
   align-items: center;
-  font-family: monospace;
-  font-size: 1rem;
-  box-shadow: 0 0 2px gray;
+
+  padding: 12px 15px;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+
+  background: white;
 }
 
-.span1 {
-  align-items: center;
-  margin: 0 25px;
-}
-
-.span2 {
-  margin: 0 2.5vw;
-  margin-left: 1.8vw;
-}
-
-.addinput1 {
-  border: none;
-  width: 6vw;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0 0.8vw;
-}
-
-.title {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 1.5rem;
-  margin-left: 1vw;
-  border: none;
-  background-color: transparent;
-  width: 21.5vw;
-  height: inherit;
-  align-items: center;
-}
-
-.addinput1 {
-  border: none;
-  width: 6vw;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.componentbaropen:hover {
+  background: #eff6ff;
 }
 </style>
 <template>
   <div class="header">
-    <router-link to="/profile" class="a1">PROFILE</router-link>
-    <router-link to="/" class="a2">HOME</router-link>
+    <router-link to="/" style="font-weight: bold">Home</router-link>
+    <router-link to="/profile" style="font-weight: bold">Profile</router-link>
   </div>
+
   <div class="main">
     <div class="backgroundopen">
+      <!-- TOP BAR -->
       <div class="containeropen2">
         <input
           type="text"
           class="title"
           placeholder="Workout Title..."
           v-model="ime"
-          required
         />
+
         <button class="Addopen1" @click="remove()">-</button>
+
         <button class="Addopen" @click="dodajpodtrening()">Add+</button>
       </div>
+
+      <!-- INPUT ROW -->
       <div class="componentbaropen">
-        <input
-          type="text"
-          id="exercise"
-          class="addinput1"
-          placeholder="Exercise..."
-          v-model="vjezba"
-          required
-        />
-        <input
-          type="text"
-          id="sets"
-          class="addinput1"
-          placeholder="Sets..."
-          v-model="setovi"
-          required
-        />
-        <input
-          type="text"
-          id="reps"
-          class="addinput1"
-          placeholder="Reps..."
-          v-model="ponavljanja"
-          required
-        />
-        <input
-          type="text"
-          id="kg"
-          class="addinput1"
-          placeholder="Kg..."
-          v-model="kilaza"
-          required
-        />
+        <input v-model="vjezba" placeholder="Exercise..." class="addinput1" />
+        <input v-model="setovi" placeholder="Sets..." class="addinput1" />
+        <input v-model="ponavljanja" placeholder="Reps..." class="addinput1" />
+        <input v-model="kilaza" placeholder="Kg..." class="addinput1" />
       </div>
+
+      <!-- LABELS -->
       <div class="text">
-        <span class="span2">Exercise</span>
-        <span class="span2">Sets</span>
-        <span class="span2">Reps</span>
-        <span class="span2">Kg</span>
+        <span>Exercise</span>
+        <span>Sets</span>
+        <span>Reps</span>
+        <span>Kg</span>
       </div>
+
+      <!-- TABLE -->
       <div class="containeropen">
         <ComponentBarOpen
           v-for="(exercise, index) in currentTable"
           :key="index"
           :vjezba="exercise"
+          @dblclick="deleteExercise(index)"
         />
       </div>
     </div>
@@ -322,6 +350,28 @@ export default {
           body: JSON.stringify({
             table: this.currentWorkout.table,
             name: this.currentWorkout.name,
+          }),
+        },
+      );
+    },
+    async deleteExercise(index) {
+      if (
+        !this.currentWorkout ||
+        index < 0 ||
+        index >= this.currentWorkout.table.length
+      )
+        return;
+
+      this.currentWorkout.table.splice(index, 1);
+
+      const res = await fetch(
+        `${process.env.VUE_APP_API_URL}/vjezbe/${this.currentWorkout._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            table: this.currentWorkout.table,
+            name: this.ime,
           }),
         },
       );

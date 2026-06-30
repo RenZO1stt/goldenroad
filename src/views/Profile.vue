@@ -1,104 +1,134 @@
 <style scoped>
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
 body {
   margin: 0;
+  background: #f8fafc;
 }
+
+/* HEADER */
+
 .header {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
+  width: 100%;
+  height: 70px;
+
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
 
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: sticky;
-}
 
-a {
-  color: white;
-  text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  padding: 0.5vh 0.79vw;
+  padding: 0 40px;
+
   box-sizing: border-box;
-  user-select: none;
 }
 
-.a1 {
-  border-right: 1px white solid;
-  margin-left: 45.72vw;
-  user-select: none;
+.header a {
+  color: #374151;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+
+  margin-right: 25px;
+
+  transition: 0.2s;
 }
+
+.header a:hover {
+  color: #2563eb;
+}
+
+/* LOGOUT */
 
 .Remove {
-  box-sizing: border-box;
-  margin-top: 1.9vh;
-  float: right;
-  margin-right: 0.26vw;
-  border: none;
-  background-color: red;
+  background: #ef4444;
   color: white;
-  border-radius: 16px;
-  width: 2.5vw;
-  height: 5vh;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 0.8vw;
-  font-weight: bold;
+  border: none;
+  padding: 13px 17px;
+  border-radius: 10px;
 }
 
 .Remove:hover {
-  background-color: darkred;
+  background: #dc2626;
 }
+
+.logout {
+  margin-left: auto;
+}
+
+/* PAGE LAYOUT */
 
 .avataricon {
-  margin: 4vh auto;
-  width: 15vw;
-  height: auto;
-  margin-bottom: 2.5vh;
+  display: block;
+
+  width: 120px;
+  height: 120px;
+
+  margin: 150px auto 20px;
+
+  border-radius: 50%;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  object-fit: cover;
 }
 
+/* CARD */
+
 .text {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1.5vw;
-  width: 40vw;
-  height: 45vh;
+  width: 380px;
+  max-width: 90%;
+
   margin: 0 auto;
-  white-space: nowrap;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: white;
+  gap: 15px;
+
+  padding: 25px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+
+  color: #111827;
 }
+
+/* ITEMS */
+
 .singular {
-  margin-left: 1vw;
-  margin: 3vh 0;
-  background-color: gray;
-  border-radius: 7px;
-  padding: 1vh 1vw;
+  background: #f3f4f6;
+
+  padding: 12px 15px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  color: #374151;
+
+  transition: 0.2s;
 }
 
 .singular:hover {
-  background-color: black;
-  transform: scale(1.1) rotateZ(5deg);
-  transition: transform 0.1s ease-in-out;
+  background: #e5e7eb;
+  transform: translateY(-2px);
 }
 </style>
 
 <template>
   <div class="header">
-    <router-link to="/profile" class="a1">PROFILE</router-link>
-    <router-link to="/" class="a2">HOME</router-link>
-    <button
-      class="Remove"
-      style="
-        width: 7%;
-        font-weight: normal;
-        margin: 5px 0.78vw;
-        align-items: center;
-        margin-left: auto;
-      "
-      @click="logout()"
+    <router-link to="/" class="a2" style="font-weight: bold">Home</router-link>
+    <router-link to="/profile" class="a1" style="font-weight: bold"
+      >Profile</router-link
     >
-      LOG OUT
-    </button>
+    <button class="Remove logout" @click="logout()">LOG OUT</button>
   </div>
 
   <img src="@/assets/avataricon.png" alt="Avatar Icon" class="avataricon" />

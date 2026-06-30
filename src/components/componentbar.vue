@@ -1,30 +1,58 @@
 <style>
-body {
-  margin: 0;
-}
 .componentbar {
-  height: 5vh;
-  width: auto;
-  background-color: rgb(228, 227, 227);
-  margin: 7.5px 0;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-around;
+
+  padding: 14px 20px;
+  margin: 10px 12px;
+
+  background: white;
+
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
   font-family: monospace;
-  font-size: 0.9rem;
-  box-shadow: 0 0 2px gray;
 }
 
 .componentbar:hover {
-  background-color: lightgray;
+  background: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
 }
 
-.cantselect {
-  user-select: none;
-  overflow-y: auto;
-  scrollbar-width: none;
+/* DATE */
+.date {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+/* NAME */
+.name {
+  flex: 1;
+  text-align: right;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
+
+<template>
+  <div class="componentbar">
+    <span class="cantselect">{{ vari.datum }}</span>
+    <span class="cantselect">{{ vari.name || "  " }}</span>
+  </div>
+</template>
 
 <script>
 let date = new Date().toLocaleDateString();
@@ -43,10 +71,3 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div class="componentbar">
-    <span class="cantselect">{{ vari.datum }}</span>
-    <span class="cantselect">{{ vari.name || "  " }}</span>
-  </div>
-</template>

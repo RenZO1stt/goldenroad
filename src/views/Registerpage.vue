@@ -1,81 +1,174 @@
 <style scoped>
 body {
   margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f8fafc;
 }
+.main * {
+  font-family: "Times New Roman", Times, serif !important;
+}
+* {
+  box-sizing: border-box;
+}
+
 .header {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
   position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.background {
-  width: 35vw;
-  height: 70vh;
-  align-items: center;
-  margin: 0 auto;
-  overflow-y: auto;
-  margin-top: 10vh;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 10px gray;
-  scrollbar-width: none;
+.main {
+  min-height: calc(100vh - 70px);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
+
+/* Outer container */
+.background:first-of-type {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Login card */
+.background:last-of-type {
+  width: 430px;
+  max-width: 100%;
+  padding: 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+.background h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 10px;
+  margin-bottom: 35px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Inputs */
+
+.background input {
+  width: 100%;
+  height: 52px;
+
+  margin-bottom: 18px;
+
+  padding: 0 16px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+.background input::placeholder {
+  color: #9ca3af;
+}
+
+.background input:focus {
+  outline: none;
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+/* Button */
 
 .login {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 10px;
+
   border: none;
-  width: 65%;
-  height: 15%;
-  border-radius: 15px;
-  background-color: blue;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1vw;
+  border-radius: 10px;
+
+  background: #2563eb;
+
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
-  margin-top: 1.5vh;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s;
 }
 
 .login:hover {
-  background-color: darkblue;
+  background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
-.googleicon {
-  display: inline-block;
-  width: auto;
-  height: 60%;
-  margin-right: 1vw;
+.login:active {
+  transform: translateY(0);
 }
 
+/* Register text */
+
+.register-text {
+  margin-top: 22px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.register-text a {
+  margin-left: 4px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}
+
+/* Unused classes */
+
+.googleicon,
+.questionicon,
 .loginsecret {
-  border: none;
-  width: 65%;
-  height: 15%;
-  border-radius: 15px;
-  background-color: lightgray;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1vw;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
+  display: none;
 }
 
-.questionicon {
-  display: inline-block;
-  width: auto;
-  height: 60%;
-  margin-right: 1vw;
-  margin: auto;
+/* Mobile */
+
+@media (max-width: 600px) {
+  .background:last-of-type {
+    padding: 35px 25px;
+  }
+
+  .background h1 {
+    font-size: 28px;
+  }
 }
 </style>
 
@@ -83,59 +176,19 @@ body {
   <div class="header"></div>
   <div class="main">
     <div class="background">
-      <div
-        class="background"
-        style="
-          background-color: whitesmoke;
-          width: 80%;
-          height: 80%;
-          margin: auto;
-          display: flex;
-          flex-direction: column;
-        "
-      >
-        <h1 style="margin-bottom: 2vh">Register</h1>
-        <input
-          v-model="gmail"
-          type="text"
-          placeholder="Enter your Gmail"
-          style="
-            width: 65%;
-            height: 15%;
-            border-radius: 15px;
-            margin: 2vh 0;
-            padding-left: 1vw;
-            font-size: 1vw;
-          "
-        />
+      <div class="background">
+        <h1 style="margin-bottom: 15px">Register</h1>
+        <input v-model="gmail" type="text" placeholder="Enter your Gmail" />
 
         <input
           v-model="pass"
           type="password"
           placeholder="Enter your Password"
-          style="
-            width: 65%;
-            height: 15%;
-            border-radius: 15px;
-            margin: 2vh 0;
-            padding-left: 1vw;
-            font-size: 1vw;
-          "
         />
         <button class="login" @click="register()">R E G I S T E R</button>
-        <span
-          style="
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-              sans-serif;
-            font-size: 1vw;
-          "
-        >
+        <span class="register-text">
           Already have an account?
-          <router-link
-            to="/login"
-            style="color: orange; text-decoration: underline"
-            >Login</router-link
-          ></span
+          <router-link to="/login">Login</router-link></span
         >
       </div>
     </div>

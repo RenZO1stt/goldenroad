@@ -1,136 +1,184 @@
 <style scoped>
-body {
-  margin: 0;
-}
 .header {
-  background-color: black;
-  width: 100vw;
-  height: 10vh;
+  width: 100%;
+  height: 70px;
+
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 40px;
+
+  box-sizing: border-box;
+}
+
+.header a {
+  color: #374151;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+
+  margin-right: 25px;
+
+  transition: 0.2s;
+}
+
+.header a:hover {
+  color: #2563eb;
+}
+
+.a1 {
+  margin-left: auto;
+}
+
+.main {
+  min-height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
-}
 
-a {
-  color: white;
-  text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  padding: 0.3rem 0.95rem;
-  box-sizing: border-box;
-  user-select: none;
-}
+  background: #f8fafc;
 
-.a1 {
-  border-right: 1px white solid;
-  margin-left: 45.72vw;
-  user-select: none;
+  padding: 10px;
 }
 
 .background {
-  width: 35vw;
-  height: 70vh;
-  align-items: center;
-  margin: 0 auto;
-  overflow-y: auto;
-  margin-top: 10vh;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 10px gray;
-  scrollbar-width: none;
+  width: 750px;
+  max-width: 100%;
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+
+  padding: 30px;
 }
-.Add {
-  box-sizing: border-box;
-  margin-top: 1.9vh;
-  float: right;
-  margin-right: 0.8vw;
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.Add,
+.Remove {
   border: none;
-  background-color: blue;
+  border-radius: 10px;
+
+  height: 42px;
+
+  padding: 0 18px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.Add {
+  background: #2563eb;
   color: white;
-  border-radius: 16px;
-  width: 5vw;
-  height: 5vh;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 1rem;
 }
 
 .Add:hover {
-  background-color: darkblue;
+  background: #1d4ed8;
 }
 
 .Remove {
-  box-sizing: border-box;
-  margin-top: 1.9vh;
-  float: right;
-  margin-right: 0.26vw;
-  border: none;
-  background-color: red;
+  background: #ef4444;
   color: white;
-  border-radius: 16px;
-  width: 2.5vw;
-  height: 5vh;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 0.8vw;
-  font-weight: bold;
 }
 
 .Remove:hover {
-  background-color: darkred;
+  background: #dc2626;
+}
+
+.logout {
+  margin-left: auto;
 }
 
 .container {
-  background-color: whitesmoke;
-  width: 27vw;
-  height: 56vh;
-  margin: 0 auto;
-  margin-top: 5.25rem;
-  align-items: center;
-  border-radius: 1.5rem;
-  box-sizing: border-box;
+  width: 100%;
+  height: 500px;
+
+  background: #f9fafb;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 15px;
+
   overflow-y: auto;
-  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
 }
 
 .componentbar {
-  height: 5vh;
-  width: auto;
-  background-color: rgb(228, 227, 227);
-  margin: 7.5px 0;
+  min-height: 60px;
+
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  font-family: monospace;
-  font-size: 1rem;
-  box-shadow: 0 0 2px gray;
+
+  padding: 0 25px;
+
+  background: white;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  transition: 0.2s;
 }
 
 .componentbar:hover {
-  background-color: lightgray;
+  background: #eff6ff;
 }
 </style>
 
 <template>
   <div class="header">
-    <router-link to="/profile" class="a1">PROFILE</router-link>
-    <router-link to="/" class="a2">HOME</router-link>
-    <button
-      class="Remove"
-      style="
-        width: 7%;
-        font-weight: normal;
-        margin: 5px 15px;
-        align-items: center;
-        margin-left: auto;
-      "
-      @click="logout()"
-    >
-      LOG OUT
-    </button>
+    <router-link to="/" style="font-weight: bold">Home</router-link>
+
+    <router-link to="/profile" style="font-weight: bold">Profile</router-link>
+
+    <button class="Remove logout" @click="logout()">LOG OUT</button>
   </div>
+
   <div class="main">
     <div class="background">
-      <button class="Add" @click="dodajTrening()">Add+</button>
-      <button class="Remove" @click="ukloniTrening()">-</button>
+      <div class="toolbar">
+        <h2 class="title" style="border: none">My Workouts</h2>
+
+        <div class="actions">
+          <button class="Remove" @click="ukloniTrening()">Remove</button>
+
+          <button class="Add" @click="dodajTrening()">+ Add Workout</button>
+        </div>
+      </div>
+
       <div class="container">
         <ComponentBar
           v-for="trening in currentTable"
