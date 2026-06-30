@@ -21,7 +21,8 @@ body {
 }
 .addspan1 {
   border: none;
-  width: 6vw;
+  min-width: 50px;
+  width: 117.5px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.85rem;
   background-color: white;
