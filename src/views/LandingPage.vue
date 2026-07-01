@@ -3,7 +3,7 @@
   width: 100%;
   height: 70px;
 
-  background: white;
+  background: linear-gradient(to left, black, white 40%);
   border-bottom: 1px solid #e5e7eb;
 
   display: flex;
